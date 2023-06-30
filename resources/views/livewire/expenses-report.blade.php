@@ -1,11 +1,11 @@
 <div
     class=" text-sm rounded-lg overflow-clip shadow dark:shadow-none bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-400">
-    <div class="flex items-center justify-between">
-        <div class="p-4 text-red-600 dark:text-red-400 uppercase font-extrabold border-b dark:border-red-400 border-red-600">expenses
+    <div class="p-4 flex items-center justify-between dark:border-red-400 border-red-600 border-b">
+        <div class=" text-red-600 dark:text-red-400 uppercase font-extrabold  ">expenses
         </div>
-        <select>
+        <select wire:ignore wire:model="selected_row" class="border border-transparent text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
             @foreach ($months as $month)
-                <option value="{{ $month }}">{{ $month->month }}</option>
+                <option value="{{ $month->month }}">{{ $month->month }}</option>
             @endforeach
         </select>
     </div>
