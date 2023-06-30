@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                @foreach ($transactions->sortByDesc('time') as $transaction)
+                @foreach ($transactions->sortByDesc('time')->sortByDesc('id') as $transaction)
                     <div class="flex items-center ">
                         <a href="{{ route('transaction.form', ['wallet' => $transaction->source, 'transaction' => $transaction]) }}"
                             class=" flex-1 flex justify-between items-center p-3">

@@ -1,6 +1,13 @@
 <div
     class=" text-sm rounded-lg overflow-clip shadow dark:shadow-none bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-400">
-    <div class="p-4 text-red-600 dark:text-red-400 uppercase font-extrabold border-b dark:border-red-400 border-red-600">expenses
+    <div class="flex items-center justify-between">
+        <div class="p-4 text-red-600 dark:text-red-400 uppercase font-extrabold border-b dark:border-red-400 border-red-600">expenses
+        </div>
+        <select>
+            @foreach ($months as $month)
+                <option value="{{ $month }}">{{ $month->month }}</option>
+            @endforeach
+        </select>
     </div>
     @foreach ($categories->sortByDesc('total') as $category)
         <div x-data="{ expanded: false }">
