@@ -9,7 +9,6 @@
         <div class="max-w-md mx-auto">
             <div class="flex flex-col p-4 gap-4">
                 @livewire('expenses-report')
-                @livewire('expenses-report')
             </div>
         </div>
     </div>
