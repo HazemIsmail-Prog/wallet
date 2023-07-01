@@ -14,7 +14,7 @@
                 </svg>
             </button>
 
-            <div x-show="expanded" class=" rounded-lg mt-2 border dark:border-none p-3">
+            <div x-show="expanded" class=" rounded-lg mt-2 border dark:border-none">
                 <div class=" flex flex-col gap-2">
                     <select wire:model="filter.selected_wallet" class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                         <option value="">Select Wallet</option>
