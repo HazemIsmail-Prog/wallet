@@ -6,7 +6,8 @@
 
     <div class="max-w-md mx-auto p-3 pb-16 flex flex-col gap-3">
         <div x-data="{ expanded: false }" class=" w-full text-end ">
-            <button @click="expanded=!expanded" class=" p-2 rounded-lg text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700">
+            <button @click="expanded=!expanded"
+                class=" p-2 rounded-lg text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -16,25 +17,29 @@
 
             <div x-show="expanded" class=" rounded-lg mt-2 border dark:border-none">
                 <div class=" flex flex-col gap-2">
-                    <select wire:model="filter.selected_wallet" class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                    <select wire:model="filter.selected_wallet"
+                        class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                         <option value="">Select Wallet</option>
                         @foreach ($filter['wallet_list'] as $row)
                             <option value="{{ $row['id'] }}">{{ $row['name'] }}</option>
                         @endforeach
                     </select>
-                    <select wire:model="filter.selected_expense" class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                    <select wire:model="filter.selected_expense"
+                        class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                         <option value="">Select Expenses</option>
                         @foreach ($filter['expense_list'] as $row)
                             <option value="{{ $row['id'] }}">{{ $row['name'] }}</option>
                         @endforeach
                     </select>
-                    <select wire:model="filter.selected_income" class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                    <select wire:model="filter.selected_income"
+                        class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                         <option value="">Select Income</option>
                         @foreach ($filter['income_list'] as $row)
                             <option value="{{ $row['id'] }}">{{ $row['name'] }}</option>
                         @endforeach
                     </select>
-                    <select wire:model="filter.selected_contact" class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                    <select wire:model="filter.selected_contact"
+                        class=" text-center border  text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-transparent dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                         <option value="">Select Contact</option>
                         @foreach ($filter['contact_list'] as $row)
                             <option value="{{ $row['id'] }}">{{ $row['name'] }}</option>
@@ -44,7 +49,8 @@
             </div>
 
         </div>
-        @foreach ($days->sortByDesc('date')->groupBy('date') as $day => $transactions)
+
+        @foreach ($days->sortByDesc('date')->groupBy('date') as $transactions)
             <div
                 class=" border dark:border-none rounded-lg dark:bg-gray-800 text-gray-800 dark:text-gray-400 divide-y-2 dark:divide-gray-900 shadow-lg overflow-clip">
                 <div
@@ -82,8 +88,10 @@
                                 @case('expense')
                                     <div class="flex flex-col flex-1">
                                         <div class=" font-extrabold">
-                                            {{ @$transaction->target->parent_category->name ? $transaction->target->parent_category->name . ' - ' : '' }}
-                                            {{ $transaction->target->name }}</div>
+                                            {{ $transaction->target->category_id
+                                                ? $transaction->target->parent_category->name . ' - ' . $transaction->target->name
+                                                : $transaction->target->name }}
+                                        </div>
                                         <div class=" font-extralight text-xs">{{ $transaction->source->name }}</div>
                                         <div class=" font-extralight text-xs">{{ $transaction->notes }}</div>
                                     </div>
@@ -114,8 +122,10 @@
                                 @case('income')
                                     <div class="flex flex-col flex-1">
                                         <div class=" font-extrabold">
-                                            {{ @$transaction->source->parent_category->name ? $transaction->source->parent_category->name . ' -' : '' }}
-                                            {{ $transaction->source->name }}</div>
+                                            {{ $transaction->source->category_id
+                                                ? $transaction->source->parent_category->name . ' - ' . $transaction->source->name
+                                                : $transaction->source->name }}
+                                        </div>
                                         <div class=" font-extralight text-xs">{{ $transaction->target->name }}</div>
                                         <div class=" font-extralight text-xs">{{ $transaction->notes }}</div>
                                     </div>

@@ -31,7 +31,7 @@
             <header class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-400 shadow">
                 <div class="flex justify-between items-center max-w-md mx-auto py-2 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
-                    @if (auth()->user()->countries->count() > 0)
+                    @if (auth()->user()->countries->count() > 1)
                         @livewire('country-selector')
                     @endif
                 </div>

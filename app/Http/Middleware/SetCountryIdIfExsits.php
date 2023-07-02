@@ -19,11 +19,11 @@ class SetCountryIdIfExsits
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if(auth()->user()->countries->count() == 0){
-                session()->flash('message' , 'You must have at least one country to start');
+            if (auth()->user()->countries->count() == 0) {
+                session()->flash('message', 'You must have at least one country to start');
                 session()->flash('error-classes', 'text-red-600 dark:text-red-400');
                 return redirect()->route('settings');
-            } 
+            }
             (new HandleCountrySelection())->selectFirstCountryIfUserLastSelectedCountryIsNull();
         }
         return $next($request);

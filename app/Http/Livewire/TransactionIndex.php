@@ -11,7 +11,6 @@ use Livewire\Component;
 class TransactionIndex extends Component
 {
     protected $listeners = [
-        'country_changed' => 'mount',
         'TransactionsDataChanged' => 'mount',
     ];
 
@@ -48,7 +47,6 @@ class TransactionIndex extends Component
             })
             ->when($this->filter['selected_wallet'] , function($q){
                 $q->where(function($q){
-
                     $q->where('source_type','App\Models\Wallet');
                     $q->where('source_id',$this->filter['selected_wallet']);
                     $q->orWhere(function($q){
@@ -67,6 +65,16 @@ class TransactionIndex extends Component
             })
             ->with('target')
             ->with('source')
+            ->with(['target' => function ($query) {
+	            $query->morphWith([
+		            Category::class => ['parent_category'],
+                ]);
+            }])
+            ->with(['source' => function ($query) {
+	            $query->morphWith([
+		            Category::class => ['parent_category'],
+                ]);
+            }])
             ->get() ?? [];
     }
 

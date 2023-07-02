@@ -9,7 +9,6 @@ class WalletIndex extends Component
 {
 
     protected $listeners = [
-        'country_changed' => 'mount',
         'WalletsDataChanged' => 'mount',
     ];
 
