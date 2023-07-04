@@ -81,7 +81,7 @@
                 </div>
                 @foreach ($transactions->sortByDesc('time')->sortByDesc('id') as $transaction)
                     <div class="flex items-center ">
-                        <a href="{{ route('transaction.form', ['wallet' => $transaction->source, 'transaction' => $transaction]) }}"
+                        <a href="{{ route('transaction.form', ['wallet' => 1, 'transaction' => $transaction]) }}"
                             class=" flex-1 flex justify-between items-center p-3">
                             {{-- pass any wallet for now - source and target will be handled in the controller after passing --}}
                             @switch($transaction->type)
