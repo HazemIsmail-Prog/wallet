@@ -140,7 +140,7 @@ class TransactionForm extends Component
         ];
         Transaction::updateOrCreate(['id' => $this->transaction->id ?? null],$data);
 
-        return redirect()->route('transactions.index');
+        return redirect()->route('wallets.index');
     }
     public function render()
     {
